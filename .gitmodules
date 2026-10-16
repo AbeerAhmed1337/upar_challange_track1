@@ -1,0 +1,6 @@
+[submodule "upar_challenge"]
+	path = upar_challenge
+	url = https://github.com/speckean/upar_challenge.git
+[submodule "upar_dataset"]
+	path = upar_dataset
+	url = https://github.com/speckean/upar_dataset.git
