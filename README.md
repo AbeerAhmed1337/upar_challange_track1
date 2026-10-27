@@ -35,7 +35,24 @@ The notebook also tests the packaged inference code in a clean environment: it r
 ## Contents
 
 - [`upar_challange_final.ipynb`](./upar_challange_final.ipynb) — the final Colab notebook, including data preparation, training, holdout evaluation, packaging, and inference validation.
+- [`requirements.txt`](./requirements.txt) — Python packages used by the notebook.
 
 ## Running the notebook
 
-The notebook is designed for Google Colab with a GPU. It downloads the UPAR challenge resources, reads the dataset files, and uses Google Drive for checkpoints and submission artifacts. Dataset access and availability may depend on the upstream download links and the user's Drive setup.
+The notebook is designed to run in **Google Colab with a GPU**; it is not a standalone Python script. It uses Colab-specific shell commands and paths, downloads the UPAR challenge code and datasets, and saves checkpoints and the submission ZIP to Google Drive.
+
+1. Open the [notebook in Google Colab](https://colab.research.google.com/github/AbeerAhmed1337/upar_challange_track1/blob/main/upar_challange_final.ipynb). If that link does not work, download [`upar_challange_final.ipynb`](./upar_challange_final.ipynb) and upload it to Colab.
+2. In Colab, select **Runtime → Change runtime type → T4 GPU** (or another available GPU).
+3. Run the notebook cells **in order**, starting from the top. The notebook installs its Python dependencies and downloads/prepares the datasets.
+4. When prompted, authorize Google Drive access. The notebook uses `MyDrive/UPAR2027` to save checkpoints and the final `my_submission.zip`.
+5. If the PA100k download fails, follow the notebook's data-download fallback instructions; access to the dataset's Google Drive file may be required.
+6. At the end, download `my_submission.zip` from the notebook output or retrieve it from `MyDrive/UPAR2027`.
+
+The notebook installs its dependencies in its setup cells. To install the packages from [`requirements.txt`](./requirements.txt) yourself in Colab, run this in a cell before starting the notebook:
+
+```python
+!git clone https://github.com/AbeerAhmed1337/upar_challange_track1.git /content/upar-project
+!pip install -r /content/upar-project/requirements.txt
+```
+
+PyTorch and torchvision are intentionally not pinned in the requirements file because their compatible versions depend on the runtime and CUDA; Colab provides them preinstalled. The notebook installs `timm==1.0.9` as part of its setup.

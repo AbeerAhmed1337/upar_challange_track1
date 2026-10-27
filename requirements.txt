@@ -1,0 +1,7 @@
+gdown
+tqdm
+requests
+numpy
+pandas
+Pillow
+timm==1.0.9
